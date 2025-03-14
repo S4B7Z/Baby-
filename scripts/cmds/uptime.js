@@ -21,17 +21,20 @@ module.exports = {
         seconds = Math.floor(uptime % 60);
 
       const os = require("os");
+      const latency = Math.floor(Math.random() * 100); // ✅ এখানে ঠিক করা হয়েছে
+
       const boxMessage = `
-╭━━━〔 🔰 𝗕𝗢𝗧 𝗦𝗧𝗔𝗧𝗨𝗦 🔰 〕━━━╮
+╭━〔🔰𝗕𝗢𝗧 𝗦𝗧𝗔𝗧𝗨𝗦🔰|
 ┃ ⏳ 𝗨𝗽𝘁𝗶𝗺𝗲: ${days}d ${hours}h ${minutes}m ${seconds}s  
 ┃ 👥 𝗨𝘀𝗲𝗿𝘀: ${allUsers.length} | 🗂️ 𝗧𝗵𝗿𝗲𝗮𝗱𝘀: ${allThreads.length}  
 ┃ 💻 𝗢𝗦: ${os.type()} (${os.platform()})  
 ┃ ⚙️ 𝗖𝗣𝗨: ${os.cpus()[0].model}  
-┃ 🛜 𝗟𝗮𝘁𝗲𝗻𝗰𝘆: ${Math.floor(Math.random() 100)} ms  
-╰━━━━━━━━━━━━━━━━╯`;
+┃ 🛜 𝗟𝗮𝘁𝗲𝗻𝗰𝘆: ${latency} ms  
+╰━━━━━━━━━━━━━━|`;
 
       api.sendMessage(boxMessage, event.threadID);
     } catch (error) {
       api.sendMessage("❌ **Error:** Unable to fetch stats.", event.threadID);
     }
   }
+};
